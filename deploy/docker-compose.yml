@@ -24,7 +24,7 @@ services:
 
   keycloak:
     image: quay.io/keycloak/keycloak:26.4
-    command: start-dev
+    command: start-dev --import-realm
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
@@ -32,6 +32,10 @@ services:
       KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
       KC_DB_USERNAME: ${POSTGRES_USER}
       KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      HIVE_GATEWAY_CLIENT_SECRET: ${HIVE_GATEWAY_CLIENT_SECRET}
+      HIVE_TEST_USER_PASSWORD: ${HIVE_TEST_USER_PASSWORD}
+    volumes:
+      - ./keycloak:/opt/keycloak/data/import:ro
     ports: ["8080:8080"]
     depends_on:
       postgres:
