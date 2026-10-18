@@ -1,2 +1,6 @@
 <Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/gateway/">
+    <Project Path="src/gateway/Hive.Gateway/Hive.Gateway.csproj" />
+  </Folder>
 </Solution>
